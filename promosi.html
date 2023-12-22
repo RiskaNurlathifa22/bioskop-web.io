@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    body {
+      padding-top: 60px;
+    }
+
+    .custom-container {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 20px;
+    }
+
+    .custom-container img {
+      width: 100%;
+      height: 250px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .custom-container .caption {
+      padding: 16px;
+      text-align: center;
+    }
+
+    .custom-container h2 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .custom-container p {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .custom-container:hover {
+      transform: scale(1.05);
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0; 
+      width: 100%;
+      z-index: 1000;
+      background: linear-gradient(to left, #000000, #7e2121);
+    }      
+     
+    .fa {
+      padding: 10px;
+      font-size: 20px;
+      width: 40px;
+      height: auto;
+      text-align: center;
+      text-decoration: none;
+      margin: 5px 2px;
+      border-radius: 50%;
+    }
+
+    .fa:hover {
+        opacity: 0.7;
+    }
+
+    .fa-facebook {
+      background: #3B5998;
+      color: white;
+    }
+
+    .fa-twitter {
+      background: #55ACEE;
+      color: white;
+    }
+
+    .fa-youtube {
+      background: #bb0000;
+      color: white;
+    }
+
+    .fa-instagram {
+      background: #125688;
+      color: white;
+    }
+
+    .promosi ul {
+        padding: 0;
+        position: relative;
+        width: 100%;
+        text-align: center;
+    }
+
+    .promosi ul li {
+        cursor: pointer;
+        list-style: none;
+        display: inline-block;
+        border-radius: 5px;
+        padding: 10px 20px;
+        color: #262626;
+        border: 1px solid #262626;
+        margin-left: 15px;
+        font-family: arial;
+        text-transform: uppercase;
+    }
+
+    .promosi ul li:hover,
+    .promosi ul li.active {
+        background: #262626;
+        color: #fff;
+    }
+
+    .filter {
+        min-width: 350px;
+        margin: 20px auto; /* Center the container */
+    }
+
+  </style>
+  <title>Uchinema</title>
+</head>
+<body>
+  <header>   
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid text-white">
+          <h1><a class="navbar-brand" href="javascript:void(0)" style="font-size: 1em; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: bold; color: linear-gradient(to left, #000000, #7e2121);">Uchinema</a></h1>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Movies</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="teater.html">Theaters</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="promosi.html">Promotions</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="text" placeholder="Search">
+              <button class="btn btn-primary" type="button">Search</button>
+            </form>
+          </div>
+        </div>
+    </nav>
+  </header>
+
+  <main>
+  <h1 style="font-weight: bold; margin: 20px; text-align: center; margin-top: 40px;">PROMOTIONS</h1>
+
+  <div class="promosi" style="margin: 5px; align-content: center;">
+  <ul>
+    <li class="button active" data-filter="semua"  style="margin-bottom: 10px;">All</li>
+    <li class="button" data-filter="food"  style="margin-bottom: 10px;">Food & Beverage</li>
+    <li class="button" data-filter="event"  style="margin-bottom: 10px;">Event</li>
+    <li class="button" data-filter="other"  style="margin-bottom: 10px;">Other</li>
+  </ul>
+  </div>
+
+  <div class="container">
+    <div class="row" style="justify-content: center;">
+      <div style="max-width: 350px;" class="filter food">
+        <div class="custom-container"><a href="#" style="text-decoration: none;">
+          <img src="https://i.pinimg.com/564x/39/7b/73/397b73de7f405636097b96d01ee7b1c8.jpg" alt="Promosi 1">
+          <div class="caption">
+            <h5 style="color: black; font-weight: bold;">Hidangan Eksklusif: Ciptakan Kenangan Kuliner di Layar Besar</h5>
+            <p style="font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </a></div>
+        </div>
+      </div>
+
+      <div style="max-width: 350px;" class="filter event">
+        <div class="custom-container"><a href="#" style="text-decoration: none;">
+          <img src="https://i.pinimg.com/564x/b7/ce/3f/b7ce3f4b75bf9235772edf2991a1779a.jpg" alt="Promotion 2">
+          <div class="caption">
+            <h5 style="color: black; font-weight: bold;">Cinematic Soiree: Malam Penuh Kejutan di Bawah Cahaya Bintang!</h5>
+            <p style="font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </a></div>
+        </div>
+      </div>
+
+      <div style="max-width: 350px;" class="filter other">
+        <div class="custom-container"><a href="#" style="text-decoration: none;">
+          <img src="https://katalogpromosi.com/wp-content/uploads/2023/08/cinema.21_1701745627977.jpeg" alt="Promotion 3">
+          <div class="caption">
+            <h5 style="color: black; font-weight: bold;">Cashback Royal: Tonton Sepuasnya, Dapatkan Pengembalian Lebih!</h5>
+            <p style="font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </a></div>
+        </div>
+      </div>
+
+      <div style="max-width: 350px;" class="filter food">
+        <div class="custom-container"><a href="#" style="text-decoration: none;">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj48NjVc8If1P6K93-_i2vJz0lLt4z3dcNgjV2QRJ8VWKLpS3NhuTFLP_TVznRY4KPWZVtU_wNjEMFkwQBsl3KYoykdE2JOMui8pNSd0_QC0-JsrYjmcmkDD7UcdcOjOt0y5o4X7Idbi9wqyhQBGDd42g-q3JcvYX6oKdjbtSJpF8RLUjoA9naAFUI8/s1080/Promo%20CGV%20CINEMA%20Beli%20Paket%20Soccer%20Deal%20Combo%20GRATIS%20Coca%20Cola.jpg" alt="Promotion 4">
+          <div class="caption">
+            <h5 style="color: black; font-weight: bold;">Menu Spesial Bioskop: Lezatnya Makanan untuk Pencinta Film</h5>
+            <p style="font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </a></div>
+        </div>
+      </div>
+
+      <div style="max-width: 350px;" class="filter food">
+        <div class="custom-container"><a href="#" style="text-decoration: none;">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpiKzgbfWiUaPR8M_1i58j3zV5MTEkzy-gGg&usqp=CAU" alt="Promotion 5">
+          <div class="caption">
+            <h5 style="color: black; font-weight: bold;">Foodie Cinema: Rasakan Sensasi Rasa Baru di Setiap Gigitan!</h5>
+            <p style="font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </a></div>
+        </div>
+      </div>
+
+      <div style="max-width: 350px;" class="filter event">
+        <div class="custom-container"><a href="#" style="text-decoration: none;">
+          <img src="https://static.vecteezy.com/system/resources/previews/011/263/465/non_2x/cinema-night-party-promo-banner-or-invitation-card-with-cinematographic-film-strip-on-background-cinema-party-advertisement-announcement-poster-brochure-or-affiche-with-event-date-and-time-vector.jpg" alt="Promotion 6">
+          <div class="caption">
+            <h5 style="color: black; font-weight: bold;">Cinema Festival 2023: Menikmati Keajaiban Dunia Film!</h5>
+            <p style="font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+  
+
+  <footer class="bg-dark text-center py-4" style="margin-top: 30px; background: linear-gradient(to left, #000000, #000000, #7e2121); color: white; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+        <h1 class="mb-4" style="font-weight: bold;">Uchinema</h1>
+        
+         
+        <div class="mb-3">
+            <a href="#" class="text-decoration-none mx-2">About</a>
+            <a href="#" class="text-decoration-none mx-2">Services</a>
+            <a href="#" class="text-decoration-none mx-2">Privacy Policy</a>
+            <a href="#" class="text-decoration-none mx-2">Contact</a>
+        </div>
+    
+        <div class="mb-3">
+            <a href="#" class="fa fa-facebook me-2"></a>
+            <a href="#" class="fa fa-twitter me-2"></a>
+            <a href="#" class="fa fa-youtube me-2"></a>
+            <a href="#" class="fa fa-instagram me-2"></a>
+        </div>
+    
+        <p style="font-size: small;">&copy; Riska Nurlathifa 2023. All Rights Reserved</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+  
+    <script>
+    $(document).ready(function () {
+    $(".button").click(function () {
+        let nilai = $(this).attr("data-filter");
+        if (nilai == "semua") {
+            $(".filter").show("1000")
+        } else {
+            $(".filter").not("." + nilai).hide("1000")
+            $(".filter").filter("." + nilai).show("1000")
+        }
+    });
+    $("ul .button").click(function () {
+        $(this).addClass('active').siblings().removeClass('active')
+    });
+    });
+    </script>
+
+  </body>
+</html>

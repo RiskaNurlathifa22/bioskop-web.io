@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap">
+
+    <style>
+      .navbar {
+        position: absolute; 
+        width: 100%; 
+        z-index: 1000; 
+        transition: background-color 0.3s ease;   
+      }
+      
+      .transparent {
+        background-color: transparent !important;
+      }
+
+      .bgnavbar {
+        background: linear-gradient(to left, #000000, #7e2121);
+      }
+    
+      .sticky {
+        background-color: rgba(0, 0, 0, 0.7);
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+      
+      .dropdown:hover > ul {
+        display: block;
+      }
+
+      .navbar-brand {
+        color: white; 
+      }
+      
+      .navbar-nav .nav-link {
+        color: white !important; 
+      }
+    
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7); 
+        z-index: 1;
+      }
+      .fa {
+        padding: 10px;
+        font-size: 20px;
+        width: 40px;
+        height: auto;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 2px;
+        border-radius: 50%;
+      }
+
+      .fa:hover {
+          opacity: 0.7;
+      }
+
+      .fa-facebook {
+        background: #3B5998;
+        color: white;
+      }
+
+      .fa-twitter {
+        background: #55ACEE;
+        color: white;
+      }
+
+      .fa-youtube {
+        background: #bb0000;
+        color: white;
+      }
+
+      .fa-instagram {
+        background: #125688;
+        color: white;
+      }
+
+      .custom-container {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 20px;
+        height: 450px;
+        min-width: 210px;
+      }
+
+      .custom-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        display: block;
+      }
+
+      .caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        text-align: center;
+        z-index: 2;
+      }
+
+      .cobacoba ul{
+      padding: 0;
+      position: relative;
+      width: 100%;
+      display: flex; 
+      justify-content: space-evenly;
+      }
+
+      .cobacoba ul li{
+          cursor: pointer;
+          list-style: none;
+          display: inline-block;
+          border-radius: 5px;
+          padding: 10px 20px;
+          color: #262626;
+          border: 1px solid #262626;
+          /* margin-left: 15px; */
+          font-family: arial;
+          text-transform: uppercase;
+          font-size: 12px;
+      }
+      .cobacoba ul li:hover{
+          background: #262626;
+          color: #fff;
+      }
+
+      .cobacobahead ul {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center; 
+        gap: 20px;
+      }
+
+      .cobacobahead ul li {
+        cursor: pointer;
+        list-style: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        color: #fff;
+        border: 1px solid #fff;
+        font-family: Arial, sans-serif;
+        text-transform: uppercase;
+      }
+
+      .cobacobahead ul li:hover {
+        background: #fff;
+        color: #262626;
+        transition: background 0.3s, color 0.3s;
+      }
+
+      .filter-select {
+        margin-bottom: 10px;
+        padding: 5px;
+        border-radius: 8px;
+        border: 1px solid #ced4da;
+      } 
+
+      .offset-container {
+    position: relative;
+    margin-top: -60px; /* Menyesuaikan nilai ini sesuai dengan offset yang diinginkan */
+    padding-top: 60px; /* Menyesuaikan nilai ini sesuai dengan offset yang diinginkan */
+  }
+      
+    </style>
+    <title>Uchinema</title>
+</head>
+<body>
+    <header>   
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark transparent">
+        <div class="container-fluid text-white">
+          <h1><a class="navbar-brand" href="javascript:void(0)" style="font-size: 1em; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: bold; color: linear-gradient(to left, #000000, #7e2121);">Uchinema</a></h1>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Movies</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#playingnow">Now Playing</a></li>
+                      <li><a class="dropdown-item" href="#upcoming">Upcoming</a></li>
+                    </ul>
+                  </li>
+              <li class="nav-item">
+                <a class="nav-link" href="teater.html">Theaters</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="promosi.html">Promotions</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="text" placeholder="Search">
+              <button class="btn btn-primary" type="button">Search</button>
+            </form>
+          </div>
+        </div>
+    </nav>
+    
+
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" >
+        <div class="overlay"></div>
+        <ul class="carousel-indicators" style="list-style-type: none;">
+            <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+            <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+            <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
+            <li data-bs-target="#myCarousel" data-bs-slide-to="4"></li>
+        </ul>
+    
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="image/Freddy.jpg" class="d-block w-100" alt="Five Night at Freddy's">
+                <div class="carousel-caption d-none d-md-block" style="z-index: 2;">
+                    <h1 style="font-weight: bold;">Five Night at Freddy's</h1>
+                    <h6>13+ | HORROR | 2h 2m</h6>
+                    <p style="color: #ced4da;"><b>Sinopsis: </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div class="cobacobahead">
+                      <ul>
+                        <li class="button">Buy Ticket</li>
+                        <li class="button">Trailer</li>
+                        <li class="button">Playing At</li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="carousel-item">
+                <img src="image/independence.jpg" class="d-block w-100" alt="Independence Day">
+                <div class="carousel-caption d-none d-md-block"  style="z-index: 2;">
+                    <h1 style="font-weight: bold;">Independence Day</h1>
+                    <h6>13+ | ACTION | 2h 2m</h6>
+                    <p style="color: #ced4da;"><b>Sinopsis: </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div class="cobacobahead">
+                      <ul>
+                        <li class="button">Buy Ticket</li>
+                        <li class="button">Trailer</li>
+                        <li class="button">Playing At</li>
+                      </ul>
+                    </div>
+                  </div>
+            </div>
+    
+            <div class="carousel-item">
+                <img src="image/one piece.jpg" class="d-block w-100" alt="One Piece Film Red">
+                <div class="carousel-caption d-none d-md-block"  style="z-index: 2;">
+                    <h1 style="font-weight: bold;">One Piece Film Red</h1>
+                    <h6>13+ | FANTASY | 2h 2m</h6>
+                    <p style="color: #ced4da;"><b>Sinopsis: </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div class="cobacobahead">
+                      <ul>
+                        <li class="button">Buy Ticket</li>
+                        <li class="button">Trailer</li>
+                        <li class="button">Playing At</li>
+                      </ul>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="carousel-item">
+              <img src="image/Troll.jpg" class="d-block w-100" alt="Trolls Band Together">
+              <div class="carousel-caption d-none d-md-block"  style="z-index: 2;">
+                  <h1 style="font-weight: bold;">Trolls Band Together</h1>
+                  <h6>13+ | COMEDY | 2h 2m</h6>
+                  <p style="color: #ced4da;"><b>Sinopsis: </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  <div class="cobacobahead">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                      <li class="button">Playing At</li>
+                    </ul>
+                  </div>
+                </div>
+          </div>
+
+          <div class="carousel-item">
+            <img src="image/yourname.jpg" class="d-block w-100" alt="Your Name">
+            <div class="carousel-caption d-none d-md-block"  style="z-index: 2;">
+                <h1 style="font-weight: bold;">Your Name</h1>
+                <h6>13+ | ROMANCE | 2h 2m</h6>
+                <p style="color: #ced4da;"><b>Sinopsis: </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div class="cobacobahead">
+                  <ul>
+                    <li class="button">Buy Ticket</li>
+                    <li class="button">Trailer</li>
+                    <li class="button">Playing At</li>
+                  </ul>
+                </div>
+              </div>
+        </div>
+        </div>
+  
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    </header>
+
+    <main>
+      <section id="playingnow" class="offset-container">
+        <div class="row" style="position: relative; align-items: center; margin: 20px;">
+          <div class="col-sm-7">
+              <h1 style="font-weight: bold; margin-top: 10px; margin-bottom: 20px; flex-shrink: 0;">Now Playing</h1>
+          </div>
+          <div class="col-sm-5 d-flex justify-content-between">
+              <div>
+                  <h6><label for="playingAt" style="margin-bottom: 5px;">Playing at: </label>
+                      <select name="city" id="citySelect" class="filter-select" style="min-width: 100px; margin-right: 10px;">
+                          <option value="allcity" class="selectc">All City</option>
+                          <option value="jakarta" class="selectc">Jakarta</option>
+                          <option value="surabaya" class="selectc">Surabaya</option>
+                          <option value="semarang" class="selectc">Semarang</option>
+                          <option value="bandung" class="selectc">Bandung</option>
+                          <option value="yogya" class="selectc">Yogyakarta</option>
+                          <option value="serang" class="selectc">Serang</option>
+                      </select>
+                  </h6>
+              </div>
+              <div>
+                  <h6><label for="categories" style="margin-bottom: 5px;">Categories: </label>
+                      <select name="genre" id="genreSelect" class="filter-select" style="min-width: 100px;">
+                          <option value="allgenre" class="selectg">All Genre</option>
+                          <option value="action" class="selectg">Action</option>
+                          <option value="romance" class="selectg">Romance</option>
+                          <option value="horror" class="selectg">Horror</option>
+                          <option value="comedy" class="selectg">Comedy</option>
+                          <option value="fantasy" class="selectg">Fantasy</option>
+                      </select>
+                  </h6>
+              </div>
+          </div>
+      </div>
+      
+      
+        
+        <div class="container-fluid">
+            <div class="row" style="justify-content: center;">
+                            
+              <div style="max-width: 300px;" class="filter action jakarta surabaya semarang bandung yogya">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://townsquare.media/site/442/files/2015/05/skyjacked.jpg?w=1600&q=75" alt="skyjacked" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Skyjacked</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter romance jakarta surabaya semarang bandung yogya">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://townsquare.media/site/442/files/2015/05/titanic_ver2_xlg.jpg?w=1600&q=75" alt="titanic" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Titanic</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter action jakarta surabaya semarang bandung serang">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://townsquare.media/site/442/files/2015/05/independence_day_ver3.jpg?w=1600&q=75" alt="independence day" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Independence Day</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter action bandung yogya serang">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://townsquare.media/site/442/files/2015/05/perfect_storm_xlg.jpg?w=1600&q=75" alt="the perfect storm" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">The Perfect Storm</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter action jakarta surabaya semarang yogya serang">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://townsquare.media/site/442/files/2015/05/day_after_tomorrow_ver3.jpg?w=1600&q=75" alt="the day after tomorrow" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">The Day After Tomorrow</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter romance jakarta surabaya semarang bandung serang">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://www.themoviedb.org/t/p/w440_and_h660_face/aTKHLW9rEC6yJSGiK2GVqxVfl5j.jpg" alt="your name" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Your Name</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter romance bandung yogya serang">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://www.themoviedb.org/t/p/w440_and_h660_face/yzSRBl7avCK8VGoEyL21w2RyZoS.jpg" alt="172 days" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">172 Days</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter romance jakarta surabaya semarang yogya serang">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://www.themoviedb.org/t/p/w440_and_h660_face/2RjX6EuigCO3PDJkR4JutlKCIgt.jpg" alt="past lives" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Past Lives</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter horror jakarta surabaya semarang bandung yogya">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://www.themoviedb.org/t/p/original/gDa5UhhWb5eg9vxpjeXbOaRD52z.jpg" alt="Blood" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Blood</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter horror jakarta surabaya semarang bandung serang">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://www.themoviedb.org/t/p/w440_and_h660_face/f5f3TEVst1nHHyqgn7Z3tlwnBIH.jpg" alt="Thanksgiving" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Thanksgiving</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter horror bandung yogya serang">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://www.themoviedb.org/t/p/w440_and_h660_face/hxVgKLpA5ld2u226Bg11N5tK3KQ.jpg" alt="The Harbinger" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">The Harbinger</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter horror jakarta surabaya semarang yogya serang">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://www.themoviedb.org/t/p/w440_and_h660_face/ibqogFsawTq4w73GwaZ7Zecku0F.jpg" alt="Five Night at Freddy's" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Five Night at Freddy's</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter comedy jakarta surabaya semarang bandung yogya">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://www.themoviedb.org/t/p/w1280/qhb1qOilapbapxWQn9jtRCMwXJF.jpg" alt="Wonka" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Wonka</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter comedy jakarta surabaya semarang bandung serang">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://www.themoviedb.org/t/p/w440_and_h660_face/bkpPTZUdq31UGDovmszsg2CchiI.jpg" alt="Trolls Band Together" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Trolls Band Together</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter comedy bandung yogya serang">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://www.themoviedb.org/t/p/original/bqs4TeKFbfkcbQbuGAuKYu82tnp.jpg" alt="Dumb Money" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Dumb Money</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter comedy jakarta surabaya semarang yogya serang">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://www.themoviedb.org/t/p/w440_and_h660_face/7HwywN53GXmMS5oQSezsOe7f2FC.jpg" alt="The Holdovers" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">The Holdovers</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter fantasy jakarta surabaya semarang bandung yogya">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://www.themoviedb.org/t/p/w1280/eeJjd9JU2Mdj9d7nWRFLWlrcExi.jpg" alt="Mavka: The Forest Song" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Mavka: The Forest Song</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter fantasy jakarta surabaya semarang bandung serang">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://www.themoviedb.org/t/p/w1280/4Y1WNkd88JXmGfhtWR7dmDAo1T2.jpg" alt="Elemental" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Elemental</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter fantasy bandung yogya serang">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://www.themoviedb.org/t/p/w1280/AcoVfiv1rrWOmAdpnAMnM56ki19.jpg" alt="Wish" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Wish</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div style="max-width: 300px;" class="filter fantasy jakarta surabaya semarang yogya serang">
+                <div class="custom-container" style="box-sizing: border-box;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;">
+                  <img src="https://www.themoviedb.org/t/p/w1280/ogDXuVkO92GcETZfSofXXemw7gb.jpg" alt="One Piece Film Red" style="height: 320px;">
+                  <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">One Piece Film Red</h4>
+                  <p style="text-align: center; color: #6b768a; margin-bottom: 10px;">Rp100.000,00</p>
+                  <div class="cobacoba">
+                    <ul>
+                      <li class="button">Buy Ticket</li>
+                      <li class="button">Trailer</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <section id="upcoming" class="offset-container">
+          <h1 style="font-weight: bold; margin: 20px; flex-shrink: 0;">Upcoming</h1>
+          <div class="container-fluid">
+            <div class="row" style="justify-content: center;">
+            
+            <div style="max-width: 300px;">
+              <div class="custom-container" style="box-sizing: border-box;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              border-radius: 8px;
+              overflow: hidden; height: 400px;">
+                <img src="https://www.themoviedb.org/t/p/w1280/crqpDWr8yQiy7Xvj9GMgkmSrvE7.jpg" alt="Night Swim" style="height: 340px;">
+                <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Night Swim</h4>
+              </div>
+            </div>
+
+            <div style="max-width: 300px;">
+              <div class="custom-container" style="box-sizing: border-box;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              border-radius: 8px;
+              overflow: hidden; height: 400px;">
+                <img src="https://www.themoviedb.org/t/p/w1280/g7W0VDmUNLVn8vAo0QpmzlkRftL.jpg" alt="Ferrari" style="height: 340px;">
+                <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Ferrari</h4>
+              </div>
+            </div>
+
+            <div style="max-width: 300px;">
+              <div class="custom-container" style="box-sizing: border-box;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              border-radius: 8px;
+              overflow: hidden; height: 400px;">
+                <img src="https://www.themoviedb.org/t/p/w1280/g3WHQKK28HjFzfkQ2753fuEfxpu.jpg" alt="About Dry Grasses" style="height: 340px;">
+                <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">About Dry Grasses</h4>
+              </div>
+            </div>
+
+            <div style="max-width: 300px;">
+              <div class="custom-container" style="box-sizing: border-box;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              border-radius: 8px;
+              overflow: hidden; height: 400px;">
+                <img src="https://www.themoviedb.org/t/p/w1280/8u9ICwPeCpDtNwlulOSeg6WPWc7.jpg" alt="Wolf Hiding" style="height: 340px;">
+                <h4 style="text-align: center; margin-bottom: 0; margin-top: 10px;">Wolf Hiding</h4>
+              </div>
+            </div>
+          </div>
+          </div>
+        </section>
+    </main>
+    
+
+    <footer class="bg-dark text-center py-4" style="background: linear-gradient(to left, #000000,  #000000, #7e2121); color: white; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin-top: 20px;">
+        <h1 class="mb-4" style="font-weight: bold;">Uchinema</h1>
+        
+         
+        <div class="mb-3">
+            <a href="#" class="text-decoration-none mx-2">About</a>
+            <a href="#" class="text-decoration-none mx-2">Services</a>
+            <a href="#" class="text-decoration-none mx-2">Privacy Policy</a>
+            <a href="#" class="text-decoration-none mx-2">Contact</a>
+        </div>
+    
+        <div class="mb-3">
+            <a href="#" class="fa fa-facebook me-2"></a>
+            <a href="#" class="fa fa-twitter me-2"></a>
+            <a href="#" class="fa fa-youtube me-2"></a>
+            <a href="#" class="fa fa-instagram me-2"></a>
+        </div>
+    
+        <p style="font-size: small;">&copy; Riska Nurlathifa 2023. All Rights Reserved</p>
+    </footer>
+    
+    <script>
+      window.onscroll = function() {
+        myFunction();
+      };
+  
+      var navbar = document.querySelector('.navbar');
+  
+      function myFunction() {
+        if (window.pageYOffset >= 60) {
+          navbar.classList.remove('transparent');
+          navbar.classList.add('sticky');
+          navbar.classList.add('bgnavbar')
+        } else {
+          navbar.classList.add('transparent');
+          navbar.classList.remove('sticky');
+          navbar.classList.remove('bgnavbar')
+        }
+      }
+
+    $(document).ready(function () {
+    $("#citySelect").val("allcity");
+    $("#genreSelect").val("allgenre");
+      $("#genreSelect, #citySelect").change(function () {
+          let selectedGenre = $("#genreSelect").val();
+          let selectedCity = $("#citySelect").val();
+
+          $(".filter").hide("1000");
+
+          if (selectedGenre === "allgenre" && selectedCity === "allcity") {
+              $(".filter").show("1000");
+          } else if (selectedGenre === "allgenre") {
+              $(".filter." + selectedCity).show("1000");
+          } else if (selectedCity === "allcity") {
+              $(".filter." + selectedGenre).show("1000");
+          } else {
+              $(".filter." + selectedGenre + "." + selectedCity).show("1000");
+
+              if (selectedCity === "allcity") {
+                  $(".filter." + selectedGenre).show("1000");
+              }
+
+              if (selectedGenre === "allgenre") {
+                  $(".filter." + selectedCity).show("1000");
+              }
+          }
+      });
+    });
+
+    </script>  
+    
+</body>
+</html>
